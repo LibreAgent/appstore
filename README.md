@@ -1,6 +1,6 @@
-# LibreApps Appstore
+# LibreAgents App Store
 
-LibreApps Appstore is a free collection of starting points for websites, apps, agents, solutions, and connectors. Templates can use different languages, frameworks, and hosting services. Each ready template explains what it needs.
+LibreAgents App Store is a free collection of starting points for websites, apps, agents, solutions, and connectors. Templates can use different languages, frameworks, and hosting services. Each ready template explains what it needs.
 
 ## Create a website
 
