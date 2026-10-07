@@ -1,13 +1,13 @@
 # Website templates
 
-These Astro and EmDash website starters are the runnable templates offered by the LibreAgents Dashboard's **New Site** flow. The Node.js variants use local SQLite and file storage. Cloudflare variants remain upstream reference projects and are not currently offered by the Docker editor.
+Choose one of the five website starters in the LibreAgents Dashboard's **New Site** wizard. The Cloudflare folders are example projects to browse; the wizard does not install them yet.
 
-| Template | Node.js | Cloudflare |
-| --- | --- | --- |
-| Blank | [`blank`](blank) | — |
-| Starter | [`starter`](starter) | [`starter-cloudflare`](starter-cloudflare) |
-| Blog | [`blog`](blog) | [`blog-cloudflare`](blog-cloudflare) |
-| Marketing | [`marketing`](marketing) | [`marketing-cloudflare`](marketing-cloudflare) |
-| Portfolio | [`portfolio`](portfolio) | [`portfolio-cloudflare`](portfolio-cloudflare) |
+| Create in the Dashboard | Cloudflare example |
+| --- | --- |
+| [Blank](blank) | — |
+| [Starter](starter) | [Starter for Cloudflare](starter-cloudflare) |
+| [Blog](blog) | [Blog for Cloudflare](blog-cloudflare) |
+| [Marketing](marketing) | [Marketing for Cloudflare](marketing-cloudflare) |
+| [Portfolio](portfolio) | [Portfolio for Cloudflare](portfolio-cloudflare) |
 
-Homepage screenshots are in [`previews`](previews). The copied upstream license is [`EMDASH-LICENSE.txt`](EMDASH-LICENSE.txt).
+Homepage screenshots are in [previews](previews).
