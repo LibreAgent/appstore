@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 3,
+  "emdashVersion": "1.2.0",
+  "upstream": {
+    "templatesRepository": "emdash-cms/templates",
+    "templatesCommit": "1930243108073ebb41ff48533678af7635b01c37",
+    "previewRepository": "emdash-cms/emdash",
+    "previewCommit": "0a929da1b4de80c7f82f23458c2b6282455062bb",
+    "blankRepository": "emdash-cms/emdash",
+    "blankCommit": "b5f37c646f3639f07ebdc090e0ffcf48bdb4d684"
+  },
+  "templates": [
+    {
+      "type": "website",
+      "name": "blank",
+      "status": "ready",
+      "path": "templates/website/blank",
+      "description": "A minimal page and EmDash setup. Build your own layout from the ground up.",
+      "preview": null
+    },
+    {
+      "type": "website",
+      "name": "starter",
+      "status": "ready",
+      "path": "templates/website/starter",
+      "description": "Pages, posts, categories, and tags with a simple design you can shape.",
+      "preview": null
+    },
+    {
+      "type": "website",
+      "name": "blog",
+      "status": "ready",
+      "path": "templates/website/blog",
+      "description": "Posts, categories, search, RSS, and a featured story layout.",
+      "preview": "templates/website/previews/blog-homepage.jpg"
+    },
+    {
+      "type": "website",
+      "name": "marketing",
+      "status": "ready",
+      "path": "templates/website/marketing",
+      "description": "Landing pages with hero, features, testimonials, pricing, and FAQ.",
+      "preview": "templates/website/previews/marketing-homepage.jpg"
+    },
+    {
+      "type": "website",
+      "name": "portfolio",
+      "status": "ready",
+      "path": "templates/website/portfolio",
+      "description": "A project grid, case studies, galleries, and filtering.",
+      "preview": "templates/website/previews/portfolio-homepage.jpg"
+    },
+    {
+      "type": "app",
+      "name": "LibreAgents",
+      "path": "templates/app/LibreApp/LibreAgents",
+      "description": "Reserved for a future LibreAgents agent builder app template.",
+      "preview": null,
+      "status": "planned"
+    },
+    {
+      "type": "solution",
+      "name": "migrate-wordpress",
+      "path": "templates/solution/migrate-wordpress",
+      "description": "A future guided workflow for moving WordPress content into an Astro and EmDash site.",
+      "preview": null,
+      "status": "planned"
+    }
+  ]
+}
