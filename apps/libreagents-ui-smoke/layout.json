@@ -3,8 +3,7 @@
   "kind": "page",
   "documentId": "libreagents-ui-smoke",
   "items": [
-    {"id":"text-1","type":"text","props":{"text":"LibreAgents AppCard smoke app"}},
-    {"id":"image-1","type":"image","props":{"src":"/art.svg","alt":"LibreAgents test illustration"}},
-    {"id":"button-1","type":"button","props":{"label":"Open App Store","href":"https://github.com/LibreAgent/appstore"}}
+    {"id":"text-1","type":"text","props":{"text":"LibreAgents UI webview preview"}},
+    {"id":"image-1","type":"image","props":{"src":"/art.svg","alt":"LibreAgents illustration"}}
   ]
 }

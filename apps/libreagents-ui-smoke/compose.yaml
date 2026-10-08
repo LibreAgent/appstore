@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: libreagents-appcard-smoke:1.0.0
+    image: libreagents-appcard-smoke:1.0.1
     read_only: true
     cap_drop: [ALL]
     security_opt: [no-new-privileges:true]
