@@ -1,0 +1,55 @@
+{
+  "apiVersion": "appcards.airveo.com/v1",
+  "kind": "AppCard",
+  "metadata": {
+    "id": "libreagents-ui-smoke",
+    "version": "1.0.1",
+    "name": "LibreAgents UI Webview Preview",
+    "description": "Development preview of a LibreAgents UI layout running in a local Docker webview.",
+    "publisher": "LibreAgent",
+    "license": "MIT"
+  },
+  "spec": {
+    "catalog": {
+      "visibility": "public",
+      "surfaces": ["client", "server-admin", "web"],
+      "presentation": {
+        "label": "LibreAgents UI Webview Preview",
+        "shortDescription": "Open a test UI layout in a local webview"
+      },
+      "navigation": {
+        "section": "Apps",
+        "label": "LibreAgents UI Webview Preview",
+        "sortOrder": 10,
+        "defaultPath": "/office/{plane}/installed/libreagents-ui-smoke"
+      },
+      "launchable": true
+    },
+    "runtime": {
+      "kind": "container",
+      "executionTarget": "server",
+      "deployment": {
+        "format": "compose",
+        "executorClass": "compose-stack",
+        "artifact": {
+          "mediaType": "application/vnd.docker.compose",
+          "uri": "https://raw.githubusercontent.com/LibreAgent/appstore/c40d5b06d9329c3547654fef2ab1e4a476d7c132/apps/libreagents-ui-smoke/compose.yaml",
+          "digest": "sha256:62e3336180b30d44522dfe71b36bee71fb12b2bffffb26e915b1634655df61b9"
+        },
+        "entryService": "web",
+        "services": {
+          "web": {
+            "containerPort": 8080,
+            "healthcheck": {"protocol":"http","path":"/health","intervalSeconds":10,"timeoutSeconds":3}
+          }
+        }
+      },
+      "launch": {"kind":"web","service":"web","path":"/","host":"restricted-webview","session":{"mode":"none"}}
+    },
+    "compatibility": {"serverApiVersion":"1.0","architectures":["amd64","arm64"],"operatingSystems":["linux"]},
+    "authorization": {"requestedScopes":["appcard.run"],"administrationScopes":["appcard.deploy"],"nativeCapabilities":[]},
+    "provenance": {
+      "source": {"repository":"https://github.com/LibreAgent/appstore","revision":"c40d5b06d9329c3547654fef2ab1e4a476d7c132","license":"MIT"}
+    }
+  }
+}

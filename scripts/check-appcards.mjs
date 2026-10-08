@@ -43,6 +43,7 @@ for (const entry of catalog.cards) {
   assert.equal(layout.version,1);
   assert.equal(layout.kind,'page');
   assert.equal(layout.documentId,entry.id);
-  assert.deepEqual(layout.items.map(item=>item.type),['text','image','button']);
+  assert.deepEqual(layout.items.map(item=>item.type),['text','image']);
+  assert.ok(!layout.items.some(item=>Object.values(item.props).some(value=>typeof value==='string' && value.includes('github.com'))));
 }
 console.log(`Validated ${seen.size} public development AppCard(s)`);

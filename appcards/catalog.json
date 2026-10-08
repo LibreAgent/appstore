@@ -3,11 +3,11 @@
   "cards": [
     {
       "id": "libreagents-ui-smoke",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "scope": "public",
       "category": "server",
       "status": "development",
-      "path": "appcards/libreagents-ui-smoke/1.0.0/appcard.json"
+      "path": "appcards/libreagents-ui-smoke/1.0.1/appcard.json"
     }
   ]
 }
