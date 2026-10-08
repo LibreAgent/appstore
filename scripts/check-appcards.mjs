@@ -1,0 +1,48 @@
+import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { execFile } from 'node:child_process';
+import { readFile } from 'node:fs/promises';
+import { promisify } from 'node:util';
+
+const exec = promisify(execFile);
+const catalog = JSON.parse(await readFile(new URL('../appcards/catalog.json',import.meta.url),'utf8'));
+assert.equal(catalog.schemaVersion,1);
+assert.ok(Array.isArray(catalog.cards));
+const seen = new Set();
+for (const entry of catalog.cards) {
+  assert.match(entry.id,/^[a-z0-9][a-z0-9-]{1,63}$/);
+  assert.match(entry.version,/^\d+\.\d+\.\d+$/);
+  assert.ok(['web','office','server'].includes(entry.category));
+  assert.equal(entry.scope,'public','Private AppCards cannot be stored in this public repository');
+  assert.ok(['development','ready'].includes(entry.status));
+  assert.equal(entry.path,`appcards/${entry.id}/${entry.version}/appcard.json`);
+  assert.ok(!seen.has(`${entry.id}@${entry.version}`));
+  seen.add(`${entry.id}@${entry.version}`);
+  const card = JSON.parse(await readFile(new URL(`../${entry.path}`,import.meta.url),'utf8'));
+  assert.equal(card.apiVersion,'appcards.airveo.com/v1');
+  assert.equal(card.kind,'AppCard');
+  assert.equal(card.metadata.id,entry.id);
+  assert.equal(card.metadata.version,entry.version);
+  assert.equal(card.spec.catalog.visibility,entry.scope);
+  assert.equal(card.spec.catalog.launchable,true);
+  assert.equal(card.spec.runtime.kind,'container');
+  assert.equal(card.spec.runtime.executionTarget,'server');
+  assert.equal(card.spec.runtime.deployment.format,'compose');
+  assert.equal(card.spec.runtime.deployment.executorClass,'compose-stack');
+  const revision = card.spec.provenance.source.revision;
+  assert.match(revision,/^[a-f0-9]{40}$/);
+  assert.equal(card.spec.provenance.source.repository,'https://github.com/LibreAgent/appstore');
+  const path = `apps/${entry.id}/compose.yaml`;
+  assert.equal(card.spec.runtime.deployment.artifact.uri,`https://raw.githubusercontent.com/LibreAgent/appstore/${revision}/${path}`);
+  const {stdout:compose} = await exec('git',['show',`${revision}:${path}`],{encoding:'buffer',maxBuffer:1_000_000});
+  assert.equal(card.spec.runtime.deployment.artifact.digest,`sha256:${createHash('sha256').update(compose).digest('hex')}`);
+  const {stdout:dockerfile} = await exec('git',['show',`${revision}:apps/${entry.id}/Dockerfile`],{encoding:'utf8'});
+  assert.match(dockerfile,/^FROM node:24-bookworm-slim@sha256:[a-f0-9]{64}$/m);
+  const {stdout:layoutText} = await exec('git',['show',`${revision}:apps/${entry.id}/layout.json`],{encoding:'utf8'});
+  const layout = JSON.parse(layoutText);
+  assert.equal(layout.version,1);
+  assert.equal(layout.kind,'page');
+  assert.equal(layout.documentId,entry.id);
+  assert.deepEqual(layout.items.map(item=>item.type),['text','image','button']);
+}
+console.log(`Validated ${seen.size} public development AppCard(s)`);

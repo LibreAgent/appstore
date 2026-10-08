@@ -4,6 +4,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node scripts/check-catalog.mjs"
+    "test": "node scripts/check-catalog.mjs && node scripts/check-appcards.mjs"
   }
 }
